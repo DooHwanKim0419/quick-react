@@ -1,5 +1,9 @@
+body {
+  min-height: 100vh;
+}
+
 .container {
-  padding: 5% 10%;
+  padding: 5% 7%;
 }
 
 .text-center {
@@ -11,5 +15,32 @@
 }
 
 .course-schedule {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 20%));
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.card {
+  padding: 10%;
+  border: 1px solid #717171;
+  border-radius: 10px;
   text-align: left;
+}
+
+.card > .class-information {
+  height: 300px;
+}
+
+.card > .class-information > h1 {
+  font-size: 35px;
+}
+
+.card > .class-information > p {
+  font-size: 25px;
+}
+
+.card > p.time-schedule {
+  font-size: 20px;
 }
