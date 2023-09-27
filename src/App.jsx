@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Banner from "./components/Banner";
-import CourseList from "./components/CourseList";
+import TermPage from "./components/TermPage";
 import { fetchData } from "./utilities/Fetch";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
@@ -45,7 +45,7 @@ const MainComponent = () => {
   return (
     <div>
       <Banner title={title} />
-      <CourseList courses={courses} />
+      <TermPage allCourses={courses} />
     </div>
   );
 };
@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="container text-center">
+      <div className="custom-container text-center">
         <MainComponent />
       </div>
     </QueryClientProvider>

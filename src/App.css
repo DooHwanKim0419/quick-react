@@ -2,12 +2,12 @@ body {
   min-height: 100vh;
 }
 
-.container {
-  padding: 5% 7%;
-}
-
 .text-center {
   text-align: center;
+}
+
+.custom-container {
+  padding: 5% 7%;
 }
 
 .title {
