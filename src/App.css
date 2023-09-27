@@ -44,3 +44,14 @@ body {
 .card > p.time-schedule {
   font-size: 20px;
 }
+
+div.no-data {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.no-data > div.error-message {
+  display: block;
+}
