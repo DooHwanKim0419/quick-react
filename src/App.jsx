@@ -1,46 +1,64 @@
 import { useState } from "react";
 import Banner from "./components/Banner";
 import CourseList from "./components/CourseList";
+import { fetchData } from "./utilities/Fetch";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
 
-const schedule = {
-  title: "CS Courses for 2018-2019",
-  courses: {
-    F101: {
-      term: "Fall",
-      number: "101",
-      meets: "MWF 11:00-11:50",
-      title: "Computer Science: Concepts, Philosophy, and Connections",
-    },
-    F110: {
-      term: "Fall",
-      number: "110",
-      meets: "MWF 10:00-10:50",
-      title: "Intro Programming for non-majors",
-    },
-    S313: {
-      term: "Spring",
-      number: "313",
-      meets: "TuTh 15:30-16:50",
-      title: "Tangible Interaction Design and Learning",
-    },
-    S314: {
-      term: "Spring",
-      number: "314",
-      meets: "TuTh 9:30-10:50",
-      title: "Tech & Human Interaction",
-    },
-  },
-};
+const MainComponent = () => {
+  const url =
+    "https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php";
 
-const App = () => {
-  const { title, courses } = schedule;
+  const scheduleQuery = fetchData(url);
+  const [data, isLoading, error] = scheduleQuery;
+
+  if (isLoading) {
+    return (
+      <div className="no-data">
+        <h1>Still Loading the data...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="no-data">
+        <div className="error-message">
+          <h1>Error while fetching the data...</h1>
+          <h2>Detailed Error Message:</h2>
+          <p>{`${error}`}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return (
+      <div className="no-data">
+        <h1>There are no data found!</h1>
+      </div>
+    );
+  }
+
+  const { title, courses } = data;
 
   return (
-    <div className="container text-center">
+    <div>
       <Banner title={title} />
       <CourseList courses={courses} />
     </div>
+  );
+};
+
+const App = () => {
+  const queryClient = new QueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <div className="container text-center">
+        <MainComponent />
+      </div>
+    </QueryClientProvider>
   );
 };
 
