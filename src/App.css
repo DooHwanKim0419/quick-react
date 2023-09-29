@@ -62,3 +62,55 @@ div.no-data {
 div.no-data > div.error-message {
   display: block;
 }
+
+div.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.modal {
+  display: block;
+  visibility: hidden;
+  padding: 10% 0;
+}
+
+.modal-show {
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: opacity 0.2s linear;
+}
+
+.modal-content {
+  opacity: 0;
+}
+
+.modal-dialog {
+  max-width: 80% !important;
+}
+
+.modal-show .modal-content {
+  transition: 0.2s ease-in;
+  opacity: 1;
+}
+
+.course-schedule-list,
+.course-schedule-list > table {
+  width: 100%;
+}
+
+.course-schedule-list > table > thead {
+  border-bottom: 1px solid #717171;
+}
+
+.course-schedule-list > table > tbody > tr:not(:last-child) {
+  border-bottom: 1px solid #717171;
+}
+
+.course-schedule-list > table > tbody > tr > td {
+  padding: 5%;
+}
+
+button.schedule-modal {
+  color: #ffffff;
+}
