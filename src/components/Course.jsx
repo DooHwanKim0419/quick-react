@@ -1,10 +1,10 @@
 import "../App.css";
 
-const Course = ({ course }) => {
+const Course = ({ course, onClick, chosen }) => {
   const { term, number, meets, title } = course;
 
   return (
-    <div className="card">
+    <div className={`card ${chosen ? "selected" : ""}`} onClick={onClick}>
       <div className="class-information">
         <h1 className="title">
           {term} CS {number}
