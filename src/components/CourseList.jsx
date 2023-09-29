@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Course from "./Course";
 import "../App.css";
 
-const CourseList = ({ allCourses, choice }) => {
+const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
   const [chosen, setChosen] = useState([]);
+
+  useEffect(() => {
+    const updateClasses = () => {
+      const chosenClasses = Object.entries(allCourses).filter(([id, course]) =>
+        chosen.includes(id)
+      );
+
+      updateChosenClasses(chosenClasses);
+    };
+
+    updateClasses();
+  }, [chosen]);
 
   const filtered = Object.entries(allCourses).filter(
     ([id, course]) => course.term.toUpperCase() === choice.toUpperCase()
