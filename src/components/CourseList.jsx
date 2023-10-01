@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import Course from "./Course";
+import {
+  getSelectedTimes,
+  meetsToObjectArray,
+  getAllConflictedIds,
+} from "../utilities/TimeConfilict";
 import "../App.css";
 
 const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
   const [chosen, setChosen] = useState([]);
+  const [conflictedIds, setConflictedIds] = useState([]);
 
   useEffect(() => {
     const updateClasses = () => {
@@ -12,6 +18,12 @@ const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
       );
 
       updateChosenClasses(chosenClasses);
+
+      const times = getSelectedTimes(chosenClasses);
+      const timeInfo = meetsToObjectArray(times);
+      const allConflictedIds = getAllConflictedIds(timeInfo, allCourses);
+
+      setConflictedIds(allConflictedIds);
     };
 
     updateClasses();
@@ -24,6 +36,10 @@ const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
   const courses = Object.fromEntries(filtered);
 
   const addToChosenList = (id) => {
+    if (conflictedIds.includes(id)) {
+      return;
+    }
+
     if (chosen.includes(id)) {
       const newChosen = chosen.filter((currId) => currId !== id);
       setChosen(newChosen);
@@ -40,6 +56,7 @@ const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
           course={course}
           onClick={() => addToChosenList(id)}
           chosen={chosen.includes(id)}
+          conflicted={conflictedIds.includes(id)}
         />
       ))}
     </div>
