@@ -36,6 +36,13 @@ body {
   color: #ffffff;
 }
 
+.card.conflicted {
+  background-color: #ff7875;
+  border: 1px solid #ff7875;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
 .card > .class-information {
   height: 300px;
 }
