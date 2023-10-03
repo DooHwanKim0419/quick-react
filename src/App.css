@@ -121,3 +121,35 @@ div.action-buttons {
 button.schedule-modal {
   color: #ffffff;
 }
+
+div.edit-button {
+  text-align: center;
+}
+
+div.edit-button > button {
+  padding: 5% 10%;
+  border-radius: 30px;
+}
+
+div.form-wrapper {
+  border: 1px solid #717171;
+  border-radius: 10px;
+  padding: 20%;
+}
+
+div.input-field-area {
+  margin-bottom: 20px;
+}
+
+div.input-field-area > label {
+  font-weight: bolder;
+}
+
+div.input-field-area > input {
+  border-radius: 15px;
+  border: 2px solid #789bff;
+}
+
+div.form-button-area {
+  text-align: center;
+}

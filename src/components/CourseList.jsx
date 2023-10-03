@@ -53,6 +53,7 @@ const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
       {Object.entries(courses).map(([id, course]) => (
         <Course
           key={id}
+          id={id}
           course={course}
           onClick={() => addToChosenList(id)}
           chosen={chosen.includes(id)}
