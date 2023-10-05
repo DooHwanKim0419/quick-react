@@ -1,17 +1,19 @@
+import getNameFromLabel from "../utilities/CourseNameMapper";
 import "../App.css";
 
-const InputField = ({ name, label, value, onChange }) => (
+const InputField = ({ fieldKey, label, value, onChange }) => (
   <div className="input-field-area">
-    <label htmlFor={name} className="form-label">
-      {label}
+    <label htmlFor={fieldKey} className="form-label">
+      {getNameFromLabel(label)}
     </label>
     <input
       className="form-control"
-      id={name}
-      name={name}
-      defaultValue={value}
+      id={fieldKey}
+      name={fieldKey}
+      defaultValue={value.values?.[fieldKey]}
       onChange={onChange}
     />
+    <div className="invalid-feedback">{value.errors?.[fieldKey]}</div>
   </div>
 );
 
