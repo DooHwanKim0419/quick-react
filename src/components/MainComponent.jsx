@@ -1,15 +1,11 @@
 import Banner from "./Banner";
 import TermPage from "./TermPage";
-import { fetchData } from "../utilities/Fetch";
+import { useDbData } from "../utilities/Firebase";
 
 const MainComponent = () => {
-  const url =
-    "https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php";
+  const [data, error] = useDbData("/");
 
-  const scheduleQuery = fetchData(url);
-  const [data, isLoading, error] = scheduleQuery;
-
-  if (isLoading) {
+  if (data === undefined) {
     return (
       <div className="no-data">
         <h1>Still Loading the data...</h1>
