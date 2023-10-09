@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import FormButtons from "./FormButtons";
 import InputField from "./InputField";
 import {
@@ -7,6 +7,7 @@ import {
   isWithoutLeadingZero,
 } from "../utilities/CourseValidate";
 import "../App.css";
+import { useDbUpdate } from "../utilities/Firebase";
 
 const validateCourseInput = (name, value) => {
   if (name === "title") {
@@ -106,6 +107,8 @@ const validateCourseInput = (name, value) => {
 const CourseForm = () => {
   const { state } = useLocation();
   const [courseState, setCourseState] = useState({ values: state });
+  const { id } = useParams();
+  const [updateData] = useDbUpdate(`/courses/${id}`);
 
   const onChange = (event) => {
     const { target } = event;
@@ -127,6 +130,11 @@ const CourseForm = () => {
 
   const submitForm = (event) => {
     event.preventDefault();
+    const { values, errors } = courseState;
+
+    if (!errors) {
+      updateData(values);
+    }
   };
 
   return (
