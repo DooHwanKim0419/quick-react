@@ -153,3 +153,30 @@ div.input-field-area > input {
 div.form-button-area {
   text-align: center;
 }
+
+.custom-navbar {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav.custom-navbar a {
+  color: #ffffff;
+}
+
+nav.custom-navbar > a.navbar-brand {
+  cursor: pointer;
+}
+
+nav.custom-navbar div.navbar-nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav.custom-navbar a.nav-link {
+  cursor: pointer;
+}
+
+nav.custom-navbar a.nav-link:hover {
+  color: #ffffff;
+}
