@@ -6,8 +6,9 @@ import {
   isProperTimeFormat,
   isWithoutLeadingZero,
 } from "../utilities/CourseValidate";
-import "../App.css";
 import { useDbUpdate } from "../utilities/Firebase";
+import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 const validateCourseInput = (name, value) => {
   if (name === "title") {
@@ -109,6 +110,7 @@ const CourseForm = () => {
   const [courseState, setCourseState] = useState({ values: state });
   const { id } = useParams();
   const [updateData] = useDbUpdate(`/courses/${id}`);
+  const navigate = useNavigate();
 
   const onChange = (event) => {
     const { target } = event;
@@ -134,6 +136,7 @@ const CourseForm = () => {
 
     if (!errors) {
       updateData(values);
+      navigate("/");
     }
   };
 

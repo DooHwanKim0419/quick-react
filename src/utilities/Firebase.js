@@ -1,6 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update } from "firebase/database";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDB0TOwQ2hHlR9hG9b3W0Nnqa2lWdZR7ck",
@@ -66,4 +73,25 @@ export const useDbUpdate = (path) => {
   );
 
   return [updateData, result];
+};
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const auth = getAuth(firebase);
+    onAuthStateChanged(auth, setUser);
+  }, []);
+
+  return user;
+};
+
+export const signInWithGoogle = () => {
+  const auth = getAuth(firebase);
+  signInWithPopup(auth, new GoogleAuthProvider());
+};
+
+export const googleSignOut = () => {
+  const auth = getAuth(firebase);
+  signOut(auth);
 };
