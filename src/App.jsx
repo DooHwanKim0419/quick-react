@@ -2,6 +2,7 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import RoutesBase from "./components/Routes";
+import NavigationBar from "./components/NavigationBar";
 import "./App.css";
 
 const App = () => {
@@ -9,11 +10,12 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="custom-container text-center">
-        <BrowserRouter>
+      <BrowserRouter>
+        <NavigationBar />
+        <div className="custom-container text-center">
           <RoutesBase />
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 };
