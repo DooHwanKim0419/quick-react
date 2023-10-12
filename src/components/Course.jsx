@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "../utilities/Firebase";
 import "../App.css";
 
-const Course = ({ id, course, onClick, chosen, conflicted }) => {
+const Course = ({ id, course, onClick, chosen, conflicted, isAdmin }) => {
   const { term, number, meets, title } = course;
   const navigate = useNavigate();
   const user = useAuthState();
@@ -18,7 +18,7 @@ const Course = ({ id, course, onClick, chosen, conflicted }) => {
         </h1>
         <p className="course-title">{title}</p>
       </div>
-      {user && (
+      {user && isAdmin && (
         <div className="edit-button">
           <button
             className="btn btn-primary mt-3"
