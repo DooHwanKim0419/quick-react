@@ -5,11 +5,13 @@ import {
   meetsToObjectArray,
   getAllConflictedIds,
 } from "../utilities/TimeConfilict";
+import { useAdminChecker } from "../utilities/AdminChecker";
 import "../App.css";
 
 const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
   const [chosen, setChosen] = useState([]);
   const [conflictedIds, setConflictedIds] = useState([]);
+  const [isAdmin] = useAdminChecker();
 
   useEffect(() => {
     const updateClasses = () => {
@@ -58,6 +60,7 @@ const CourseList = ({ allCourses, choice, updateChosenClasses }) => {
           onClick={() => addToChosenList(id)}
           chosen={chosen.includes(id)}
           conflicted={conflictedIds.includes(id)}
+          isAdmin={isAdmin}
         />
       ))}
     </div>
