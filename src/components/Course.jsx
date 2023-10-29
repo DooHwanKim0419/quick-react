@@ -11,6 +11,7 @@ const Course = ({ id, course, onClick, chosen, conflicted, isAdmin }) => {
     <div
       className={`card ${chosen ? "selected" : conflicted ? "conflicted" : ""}`}
       onClick={onClick}
+      data-cy="course"
     >
       <div className="class-information">
         <h1 className="title">
