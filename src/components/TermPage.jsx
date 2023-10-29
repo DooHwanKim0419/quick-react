@@ -15,7 +15,11 @@ const FilterButton = ({ filter, choice, setChoice }) => (
       checked={filter === choice}
       onChange={() => setChoice(filter)}
     />
-    <label className="btn btn-outline-primary" htmlFor={filter}>
+    <label
+      className="btn btn-outline-primary"
+      htmlFor={filter}
+      data-cy={filter}
+    >
       {filter}
     </label>
   </>
